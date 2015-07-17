@@ -2,6 +2,7 @@ package com.example.try3000;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
+	
+	public static final String DEBUGTAG = "JWP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +25,11 @@ public class MainActivity extends ActionBarActivity {
     	
     	saveBtn.setOnClickListener(new View.OnClickListener() {
 			
+		
+
 			@Override
 			public void onClick(View v) {
-				
+				Log.d(DEBUGTAG, "Save button clicked");
 				
 			}
 		});
