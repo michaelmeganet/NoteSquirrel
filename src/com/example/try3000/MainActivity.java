@@ -1,17 +1,24 @@
 package com.example.try3000;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
 	
 	public static final String DEBUGTAG = "JWP";
+	public static final String TEXTFILE = "notesquirrel.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +36,23 @@ public class MainActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Log.d(DEBUGTAG, "Save button clicked");
+				
+				EditText editText = (EditText) findViewById(R.id.text);
+				
+				String text = editText.getText().toString();
+				
+				try {
+				    FileOutputStream fos =	openFileOutput(TEXTFILE, Context.MODE_PRIVATE );
+				    fos.write(text.getBytes());
+				    fos.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					Log.d(DEBUGTAG, "Unable to save file");
+				}
+				
+				
 				
 			}
 		});
