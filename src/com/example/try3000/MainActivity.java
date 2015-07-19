@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,15 +24,21 @@ public class MainActivity extends ActionBarActivity {
 	
 	public static final String DEBUGTAG = "JWP";
 	public static final String TEXTFILE = "notesquirrel.txt";
+	public static final String FILESAVED = "FileSaved" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        addSaveButtonListener();
-        
-        loadSaveFile();
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		addSaveButtonListener();
+
+		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+		boolean fileSaved = prefs.getBoolean(FILESAVED, false);
+
+		if (fileSaved) {
+			loadSaveFile();
+		}
     }
     
     private void loadSaveFile(){
@@ -79,6 +86,12 @@ public class MainActivity extends ActionBarActivity {
 				    FileOutputStream fos =	openFileOutput(TEXTFILE, Context.MODE_PRIVATE );
 				    fos.write(text.getBytes());
 				    fos.close();
+				    
+					SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+					SharedPreferences.Editor editor = prefs.edit();
+					editor.putBoolean(FILESAVED, true);
+					editor.commit();
+					
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -86,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
 					Log.d(DEBUGTAG, "Unable to save file");
 				}
 				
-				
+
 				
 			}
 		});

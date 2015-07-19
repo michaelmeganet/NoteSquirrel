@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Try3000</string>
+    <string name="app_name">NoteSquirrel</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="edit_text_hint">Enter your text here.</string>
-
+    <string name="save">Save</string>
+	<string name="title_activity_main">Note Squirrel</string>
 </resources>
