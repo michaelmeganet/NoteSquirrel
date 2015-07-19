@@ -1838,6 +1838,7 @@ containing a value of this type.
         public static final int hello_world=0x7f0a0011;
         public static final int save=0x7f0a0014;
         public static final int title_activity_main=0x7f0a0015;
+        public static final int toast_cant_save=0x7f0a0016;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0b00cf;

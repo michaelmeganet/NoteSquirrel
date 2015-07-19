@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -83,19 +84,17 @@ public class MainActivity extends ActionBarActivity {
 				String text = editText.getText().toString();
 				
 				try {
-				    FileOutputStream fos =	openFileOutput(TEXTFILE, Context.MODE_PRIVATE );
+				    /*FileOutputStream fos =	openFileOutput(TEXTFILE, Context.MODE_PRIVATE );
 				    fos.write(text.getBytes());
 				    fos.close();
 				    
 					SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 					SharedPreferences.Editor editor = prefs.edit();
 					editor.putBoolean(FILESAVED, true);
-					editor.commit();
+					editor.commit();*/
+					Toast.makeText(MainActivity.this,R.string.toast_cant_save ,Toast.LENGTH_LONG).show();
 					
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
+				} catch (Exception e) {
 					Log.d(DEBUGTAG, "Unable to save file");
 				}
 				

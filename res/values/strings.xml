@@ -7,4 +7,5 @@
     <string name="edit_text_hint">Enter your text here.</string>
     <string name="save">Save</string>
 	<string name="title_activity_main">Note Squirrel</string>
+	<string name="toast_cant_save">Unable to save note. Is the sufficient space?</string>
 </resources>
