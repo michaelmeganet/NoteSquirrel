@@ -6,8 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="edit_text_hint">Enter your text here.</string>
     <string name="save">Save</string>
-    <string name="title_activity_main">Note Squirrel</string>
+    <string name="title_activity_main">Passpoints Image</string>
     <string name="toast_cant_save">Unable to save note. Is the sufficient space?</string>
     <string name="title_activity_image">Note Squirrel</string>
+    <string name="password_image">Password Image</string>
 
 </resources>
