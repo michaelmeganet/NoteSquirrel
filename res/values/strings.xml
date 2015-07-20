@@ -8,7 +8,7 @@
     <string name="save">Save</string>
     <string name="title_activity_main">Passpoints Image</string>
     <string name="toast_cant_save">Unable to save note. Is the sufficient space?</string>
-    <string name="title_activity_image">Note Squirrel</string>
+    <string name="title_activity_image">Passpoints Image</string>
     <string name="password_image">Password Image</string>
 
 </resources>

@@ -1,7 +1,11 @@
 package com.example.try3000;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +23,28 @@ public class ImageActivity extends ActionBarActivity {
 		
 		addTouchListener();
 		
+		showPrompt();
+		
+	}
+	private void showPrompt(){
+		AlertDialog.Builder builder = new Builder(this);
+		
+		builder.setPositiveButton("OK", new OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+			
+		builder.setTitle("Create Your Passpoint Sequence");
+		builder.setMessage("Touch four points on the image to set the passpoints sequence.");
+		
+			
+		
+		AlertDialog dlg = builder.create();
+		
+		dlg.show();
 	}
 	
 	private void addTouchListener(){
