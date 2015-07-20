@@ -4,9 +4,10 @@
     android:layout_height="match_parent" >
 
     <ImageView android:id="@+id/touch_image"
-    	android:layout_width="fill_parent"
+    	android:layout_width="match_parent"
     	android:layout_height="match_parent"
     	android:src="@drawable/image_default"
+    	android:scaleType="fitXY"
     	android:contentDescription="@string/password_image" />
     
 </LinearLayout>
