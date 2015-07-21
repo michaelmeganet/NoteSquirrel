@@ -88,5 +88,15 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 		
 		db.storePoints(points);
 		
+		
+		
+		List<Point> list = db.getPoints();
+
+		for (Point point : list) {
+			Log.d(MainActivity.DEBUGTAG,
+					String.format("Got point: (%d, %d)", point.x, point.y));
+
+		}
+
 	}
 }

@@ -1,9 +1,11 @@
 package com.example.try3000;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -49,7 +51,7 @@ public class Database extends SQLiteOpenHelper{
 			
 			values.put(COL_ID, i);
 			values.put(COL_X, point.x);
-			values.put(COL_ID, point.y);
+			values.put(COL_Y, point.y);
 			
 			db.insert(POINTS_TABLE, null, values);
 			
@@ -60,4 +62,25 @@ public class Database extends SQLiteOpenHelper{
 		db.close();
 	}
 
+	public List<Point> getPoints(){
+		List<Point> points = new ArrayList<Point>();
+		
+		SQLiteDatabase db = getReadableDatabase();
+		
+		String sql = String.format("SELECT %s, %s FROM %s ORDER BY %s", COL_X, COL_Y, POINTS_TABLE, COL_ID );
+		
+		Cursor cursor = db.rawQuery(sql, null);
+		
+		while(cursor.moveToNext()){
+			int x = cursor.getInt(0);
+			int y = cursor.getInt(1);
+			
+			points.add(new Point(x, y));
+			
+		}
+				
+		db.close();
+		return points;
+		
+	}
 }
