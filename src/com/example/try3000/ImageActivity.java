@@ -86,5 +86,7 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 	public void pointsCollected(List<Point> points) {
 		Log.d(MainActivity.DEBUGTAG, "Collected pointes: "+ points.size());
 		
+		db.storePoints(points);
+		
 	}
 }
