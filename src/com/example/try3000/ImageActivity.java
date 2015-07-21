@@ -21,6 +21,7 @@ import android.widget.ImageView;
 public class ImageActivity extends Activity implements PointCollecterListener {
 	
 	private PointCollector pointCollector = new PointCollector();
+	private Database db = new Database(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
