@@ -1842,6 +1842,7 @@ containing a value of this type.
         public static final int hello_world=0x7f0a0011;
         public static final int password_image=0x7f0a0018;
         public static final int save=0x7f0a0014;
+        public static final int storing_data=0x7f0a0019;
         public static final int title_activity_image=0x7f0a0017;
         public static final int title_activity_main=0x7f0a0015;
         public static final int toast_cant_save=0x7f0a0016;

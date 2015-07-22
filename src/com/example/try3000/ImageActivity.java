@@ -8,14 +8,11 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 
 public class ImageActivity extends Activity implements PointCollecterListener {
@@ -83,20 +80,46 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 		return super.onOptionsItemSelected(item);
 	}
 	@Override
-	public void pointsCollected(List<Point> points) {
-		Log.d(MainActivity.DEBUGTAG, "Collected pointes: "+ points.size());
+	public void pointsCollected(final List<Point> points) {
+		//Log.d(MainActivity.DEBUGTAG, "Collected pointes: "+ points.size());
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.storing_data);
 		
-		db.storePoints(points);
+		final AlertDialog dlg = builder.create();
+		dlg.show();
 		
 		
 		
-		List<Point> list = db.getPoints();
+		AsyncTask<Void, Void, Void>task = new AsyncTask<Void, Void, Void>() {
 
-		for (Point point : list) {
-			Log.d(MainActivity.DEBUGTAG,
-					String.format("Got point: (%d, %d)", point.x, point.y));
+			@Override
+			protected Void doInBackground(Void... params) {
+				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				db.storePoints(points);
+				
+				Log.d(MainActivity.DEBUGTAG, "points saved" );
+				
+				return null;
+			}
 
-		}
-
+			@Override
+			protected void onPostExecute(Void result) {
+				dlg.dismiss();
+			}
+			
+			
+		};
+		
+		task.execute();
+		
+		
+	
+		
 	}
 }

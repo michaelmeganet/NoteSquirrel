@@ -10,5 +10,6 @@
     <string name="toast_cant_save">Unable to save note. Is the sufficient space?</string>
     <string name="title_activity_image">Passpoints Image</string>
     <string name="password_image">Password Image</string>
+    <string name="storing_data">Storing Data</string>
 
 </resources>
