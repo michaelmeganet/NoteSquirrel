@@ -21,6 +21,7 @@ import android.widget.Toast;
 public class ImageActivity extends Activity implements PointCollecterListener {
 	
 	private static final String PASSWORD_SET = "PASSWORD_SET";
+	private static final int POINT_CLOSENESS = 40;
 	private PointCollector pointCollector = new PointCollector();
 	private Database db = new Database(this);
 
@@ -134,7 +135,7 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 		
 	}
 	
-	private void verifyPasspoints(final List<Point> points){
+	private void verifyPasspoints(final List<Point> touchedPoints){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Checking passpoints...");
 		
@@ -145,7 +146,33 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				// TODO Auto-generated method stub
+				
+				List<Point> savedPoints = db.getPoints();
+				
+				Log.d(MainActivity.DEBUGTAG, "Loaded points: " + savedPoints.size());
+				
+				if (savedPoints.size() != PointCollector.NUM_POINTS
+						|| touchedPoints.size() != PointCollector.NUM_POINTS){
+					return false;
+				}
+				
+				for(int i=0; i < PointCollector.NUM_POINTS; i++){
+					Point savedPoint = savedPoints.get(i);
+					Point touchedPoint = touchedPoints.get(i);
+					
+					int xDiff = savedPoint.x - touchedPoint.x;
+					int yDiff = savedPoint.y - touchedPoint.y;
+					Log.d(MainActivity.DEBUGTAG, "xDiff : " + xDiff);
+					Log.d(MainActivity.DEBUGTAG, "yDiff : " + yDiff);
+					
+					int distSquared = xDiff*xDiff + yDiff*yDiff;
+					
+					Log.d(MainActivity.DEBUGTAG, "Distance squared: " + distSquared);
+					if(distSquared > POINT_CLOSENESS*POINT_CLOSENESS){
+						return false;
+					}
+					
+				}
 				return true;
 			}
 
