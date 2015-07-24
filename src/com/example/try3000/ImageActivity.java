@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class ImageActivity extends Activity implements PointCollecterListener {
 	
@@ -133,6 +135,38 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 	}
 	
 	private void verifyPasspoints(final List<Point> points){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Checking passpoints...");
+		
+		final AlertDialog dlg = builder.create();
+		dlg.show();
+		
+		AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>(){
+
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				// TODO Auto-generated method stub
+				return true;
+			}
+
+			@Override
+			protected void onPostExecute(Boolean pass) {
+				
+				dlg.dismiss();
+				pointCollector.clear();
+				if(pass == true){
+					Intent i = new Intent(ImageActivity.this,MainActivity.class);
+					startActivity(i);
+				}
+				else {
+					Toast.makeText(ImageActivity.this, "Access Denied", Toast.LENGTH_LONG).show();
+				}
+				
+			}
+			
+			
+		};
+		task.execute();
 		
 	}
 	@Override
