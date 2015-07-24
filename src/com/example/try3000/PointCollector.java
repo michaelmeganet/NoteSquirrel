@@ -12,7 +12,6 @@ import android.view.View.OnTouchListener;
 public class PointCollector implements OnTouchListener {
 	
 	private PointCollecterListener listener;
-	
 	private List<Point> points = new ArrayList<Point>();
 	
 	
@@ -32,7 +31,6 @@ public class PointCollector implements OnTouchListener {
 		if(points.size() == 4){
 			if(listener != null){
 				listener.pointsCollected(points);
-				points.clear();
 			}
 			
 		}
@@ -43,6 +41,10 @@ public class PointCollector implements OnTouchListener {
 
 	public void setListener(PointCollecterListener listener) {
 		this.listener = listener;
+	}
+	
+	public void clear() {
+		points.clear();
 	}
 
 }

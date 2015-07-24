@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 
 public class ImageActivity extends Activity implements PointCollecterListener {
 	
+	private static final String PASSWORD_SET = "PASSWORD_SET";
 	private PointCollector pointCollector = new PointCollector();
 	private Database db = new Database(this);
 
@@ -27,10 +29,16 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 		
 		addTouchListener();
 		
-		showPrompt();
+		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+		Boolean passpointsSet = prefs.getBoolean(PASSWORD_SET, false);
+		
+		if(!passpointsSet){
+			showSetPasspointPrompt();
+		}
+		
 		pointCollector.setListener(this);
 	}
-	private void showPrompt(){
+	private void showSetPasspointPrompt(){
 		AlertDialog.Builder builder = new Builder(this);
 		
 		builder.setPositiveButton("OK", new OnClickListener() {
@@ -79,9 +87,7 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	@Override
-	public void pointsCollected(final List<Point> points) {
-		//Log.d(MainActivity.DEBUGTAG, "Collected pointes: "+ points.size());
+	private void savePasspoints(final List<Point> points){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(R.string.storing_data);
 		
@@ -103,13 +109,19 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 				}
 				db.storePoints(points);
 				
-				Log.d(MainActivity.DEBUGTAG, "points saved" );
+				Log.d(MainActivity.DEBUGTAG, "points saved: " + points.size() );
 				
 				return null;
 			}
 
 			@Override
 			protected void onPostExecute(Void result) {
+				
+				SharedPreferences prefs =  getPreferences(MODE_PRIVATE);
+				SharedPreferences.Editor editor = prefs.edit();
+				editor.putBoolean(PASSWORD_SET, true);
+				editor.commit();
+				pointCollector.clear();
 				dlg.dismiss();
 			}
 			
@@ -117,6 +129,26 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 		};
 		
 		task.execute();
+		
+	}
+	
+	private void verifyPasspoints(final List<Point> points){
+		
+	}
+	@Override
+	public void pointsCollected(final List<Point> points) {
+		//Log.d(MainActivity.DEBUGTAG, "Collected pointes: "+ points.size());
+		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+		Boolean passpointsSet = prefs.getBoolean(PASSWORD_SET, false);
+		
+		if(!passpointsSet){
+			Log.d(MainActivity.DEBUGTAG, "Saving passpoints...");
+			savePasspoints(points);
+		}
+		else{
+			Log.d(MainActivity.DEBUGTAG, "Verifying passpoints...");
+			verifyPasspoints(points);
+		}
 		
 		
 	
