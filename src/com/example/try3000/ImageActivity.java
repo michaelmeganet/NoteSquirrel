@@ -181,7 +181,7 @@ public class ImageActivity extends Activity implements PointCollecterListener {
 				
 				dlg.dismiss();
 				pointCollector.clear();
-				if(pass == true){
+				if(pass){
 					Intent i = new Intent(ImageActivity.this,MainActivity.class);
 					startActivity(i);
 				}
