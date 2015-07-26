@@ -84,18 +84,19 @@ public class MainActivity extends ActionBarActivity {
 				String text = editText.getText().toString();
 				
 				try {
-				    /*FileOutputStream fos =	openFileOutput(TEXTFILE, Context.MODE_PRIVATE );
+				    FileOutputStream fos =	openFileOutput(TEXTFILE, Context.MODE_PRIVATE );
 				    fos.write(text.getBytes());
 				    fos.close();
 				    
 					SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 					SharedPreferences.Editor editor = prefs.edit();
 					editor.putBoolean(FILESAVED, true);
-					editor.commit();*/
-					Toast.makeText(MainActivity.this,R.string.toast_cant_save ,Toast.LENGTH_LONG).show();
-					
+					editor.commit();
+					Toast.makeText(MainActivity.this,R.string.toast_save ,Toast.LENGTH_LONG).show();
+					//toast_save
 				} catch (Exception e) {
 					Log.d(DEBUGTAG, "Unable to save file");
+					Toast.makeText(MainActivity.this,R.string.toast_cant_save ,Toast.LENGTH_LONG).show();
 				}
 				
 

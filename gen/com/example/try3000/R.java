@@ -1664,7 +1664,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
-        public static final int action_settings=0x7f090042;
+        public static final int action_settings=0x7f090043;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
@@ -1686,6 +1686,7 @@ containing a value of this type.
         public static final int image=0x7f090023;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
+        public static final int lock=0x7f090042;
         public static final int middle=0x7f09001d;
         public static final int never=0x7f090017;
         public static final int none=0x7f09000f;
@@ -1840,12 +1841,14 @@ containing a value of this type.
         public static final int app_name=0x7f0a0010;
         public static final int edit_text_hint=0x7f0a0013;
         public static final int hello_world=0x7f0a0011;
+        public static final int lock=0x7f0a001b;
         public static final int password_image=0x7f0a0018;
         public static final int save=0x7f0a0014;
         public static final int storing_data=0x7f0a0019;
         public static final int title_activity_image=0x7f0a0017;
         public static final int title_activity_main=0x7f0a0015;
         public static final int toast_cant_save=0x7f0a0016;
+        public static final int toast_save=0x7f0a001a;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0b00cf;

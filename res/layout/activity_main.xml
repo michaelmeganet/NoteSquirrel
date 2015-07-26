@@ -11,12 +11,25 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="top" 
-        android:hint="@string/edit_text_hint"/>
-    
-    <Button 
-        android:id="@+id/save"
+        android:hint="@string/edit_text_hint"/><LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save"/>
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="@string/save" />
+
+        <Button
+            android:id="@+id/lock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="@string/lock" />
+        
+    </LinearLayout>
 
 </LinearLayout>
